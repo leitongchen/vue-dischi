@@ -4,3 +4,174 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #ffcdbc; 
+    color: rgb(121, 114, 111);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#app {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+
+    padding: 40px;
+
+    
+
+}
+
+#main_section {
+    flex-grow: 1;
+    display: flex;
+
+    background-color: rgb(255, 239, 239);
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(143, 109, 109, 0.4);
+}
+
+/*  LEFT SECTION */
+/* ********************************  */
+.left_menu {
+    max-width: 25%;
+    width: 400px;
+    background-color:  rgb(255, 239, 239);
+
+    border-right: 1px solid rgba(0, 0, 0, .2);
+
+    padding: 20px;
+}
+
+.left_menu ul {
+    list-style: none;
+}
+
+.left_menu ul li a {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.selected_menu {
+    color: rgb(255, 245, 242);
+    background-color: rgb(255, 191, 166);
+}
+
+
+.logo_img {
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 50px;
+}
+
+/*  RIGHT SECTION */
+/* ********************************  */
+
+.albums_section {
+    flex-grow: 1;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.top_nav {
+    display: flex;
+    align-items: center;
+}
+
+.search_bar {
+    flex-grow: 1;
+}
+
+.fas, .far  {
+    font-size: 1rem;
+}
+
+.fa-bell {
+    margin-right: 10px;
+}
+
+.search_bar {
+    border: 0;
+    padding: 10px;
+    background-color: transparent;
+    outline: none;
+
+    font-size: .8rem;
+    margin-left: 5px;
+}
+
+.profile_img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.bottom_section {
+    overflow: auto;
+}
+
+/*  Album */
+.albums_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bottom_section h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.album {
+    /* background-color: thistle;
+    border: 1px solid tomato; */
+}
+
+.album .song_title {
+   
+}
+
+.album img {
+    width: 100%;
+    max-height: 100%;
+    margin-bottom: 15px;
+}
+
+.album h3, 
+.album h4 {
+    margin: 0;
+}
+
+
+.album h3 {
+    font-size: .85rem;
+}
+.album h4 {
+    font-size: .70rem;
+    color: rgb(245, 165, 133);
+}
+
+.album .date {
+    font-size: .1rem;
+    color: rgb(194, 184, 180);
+}
+
+
+/* ******************************** */
+
+a {
+    color: rgb(245, 165, 133);
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+
+a:hover {
+    color: rgb(255, 245, 242);
+    text-decoration: none;
+    background-color: rgb(255, 210, 193);
+}
