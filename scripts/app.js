@@ -2,36 +2,52 @@ new Vue({
     el: "#app",
     data: {
         albumsList: [],
+        sortedList: [],
+
+        genreList: [],
     },
     methods: {
-
+        
     },
     mounted() {
-        let ajaxArrayLength = 1;
 
-        for (let i=0; i < ajaxArrayLength; i++) {
+        let ajaxList = [];
 
-            let ajaxList = []
+        axios.get("https://flynn.boolean.careers/exercises/api/array/music").then((resp) => {
 
-            axios.get("https://flynn.boolean.careers/exercises/api/array/music").then((resp) => {
-                
-                // console.log(resp.data.response.length);
+            ajaxArrayLength = resp.data.response.length;
 
-                ajaxArrayLength = resp.data.response.length;
-                console.log(ajaxArrayLength);
+            ajaxList = [...resp.data.response]
 
-                ajaxList = resp.data.response;
-                // console.log(ajaxList);
+            if (ajaxList.length === ajaxArrayLength) {
+                this.albumsList = ajaxList;
 
-                if (ajaxList.length === ajaxArrayLength) {
-                    this.albumsList = ajaxList
-                   
-                    console.log(this.albumsList);
-                }
+                // ordina gli album per data nell'array this.sortedList
+                this.sortedList = [...this.albumsList]
 
-            })
+                this.sortedList.sort(function (a, b) {
 
-        }
+                    a.year = parseInt(a.year)
+                    b.year = parseInt(b.year)
+
+                    return b.year - a.year;
+                });
+
+                // salvo i generi nella variabile genreList
+                let genreMusicList = [];
+
+                this.sortedList.forEach((album) => {
+
+                    if (genreMusicList.length == 0 || !genreMusicList.includes(album.genre)) {
+                        genreMusicList.push(album.genre)
+                    }
+                })
+                this.genreList = genreMusicList;
+                console.log(genreMusicList);
+            };
+        });
+
+
 
     }
 })

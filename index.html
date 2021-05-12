@@ -73,12 +73,24 @@
                         <img class="profile_img" src="img/profile.pic.jpg" alt="">
                     </div>
 
+                    <div class="container">
+
+                        <select name="select-genre" id="">
+                            <option value="all">All</option>
+                            <option 
+                            v-for="genre in genreList"
+                            :value="genre"> {{ genre }} </option>
+                        </select>
+
+                    </div>
+                    
+
                     <div class="bottom_section container">
                         <h1>Recently Added</h1>
                         <div class="albums_container row">
     
-                            <div class="album col-12 col-sm-6 col-md-4 col-lg-3"
-                            v-for="album in albumsList">
+                            <div class="album col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+                            v-for="album in sortedList">
                                 <a class="cover_link" href="#">
                                     <!-- Copertina -->
                                     <img :src="album.poster" alt="">
