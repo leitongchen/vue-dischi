@@ -77,18 +77,25 @@
                         <h1>Recently Added</h1>
                         <div class="albums_container row">
     
-                            <div class="album col-12 col-sm-6 col-md-4 col-lg-3">
-                                <!-- Copertina -->
-                                <img src="https://images-na.ssl-images-amazon.com/images/I/41JD3CW65HL.jpg" alt="">
-                                
+                            <div class="album col-12 col-sm-6 col-md-4 col-lg-3"
+                            v-for="album in albumsList">
+                                <a class="cover_link" href="#">
+                                    <!-- Copertina -->
+                                    <img :src="album.poster" alt="">
+                                    <div class="overlay">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                </a>
                                 <div class="song_title">
                                     <!-- Titolo Canzone -->
-                                    <h3>Ten's Summoner's Tales</h3>
+                                    <h3>{{ album.title }}</h3>
         
                                     <!-- Autore -->
-                                    <h4>Sting</h4>
+                                    <a href="#">
+                                        <h4>{{ album.author }}</h4>
+                                    </a>
                                     <!-- Anno -->
-                                    <span class="date">1993</span>
+                                    <span class="date">{{ album.year }}</span>
                                 </div>
                             </div>
                             
