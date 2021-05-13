@@ -16,7 +16,7 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
 
-    <title>Musics</title>
+    <title>Peachfully</title>
 </head>
 
 <body>
@@ -80,9 +80,9 @@
                             <h1>Recently Added</h1>
     
                             <div class="select-contain">
-                                <select name="select-genre" id="select-genre"
-                                @change="albumsFiltered" v-model="userInput">
-                                    <option value="" selected>All</option>
+                                <select name="select-genre" id="select-genre" 
+                                v-model="userInput">
+                                    <option value="">All</option>
                                     <option 
                                     v-for="genre in genreList"
                                     :value="genre"> {{ genre }} </option>

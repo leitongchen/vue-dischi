@@ -3,6 +3,7 @@ new Vue({
     data: {
         albumsList: [],
         sortedList: [],
+        filteredList: [],
 
         genreList: [],
 
@@ -12,34 +13,58 @@ new Vue({
         albumsFiltered() {
             // console.log(event)
 
-            if (!this.userInput || this.userInput === "all") {
-
-                // console.log(this.sortedList)
+            if (!this.userInput && this.sortedList) {
                 return this.sortedList
             }
-
             // console.log(this.userInput)
-
-            return this.sortedList.filter((album) => album.genre.toLowerCase() === this.userInput.toLowerCase())
+            return  this.sortedList.filter((album) => album.genre.toLowerCase() === this.userInput.toLowerCase())
         }
     },
     methods: {
+        createGenreList() {
+             // salvo i generi nella variabile genreList
+             let genreMusicList = [];
+
+             this.sortedList.forEach((album) => {
+
+                 if (!genreMusicList.includes(album.genre)) {
+                     genreMusicList.push(album.genre)
+                 }
+             })
+             this.genreList = genreMusicList;
+            // console.log(genreMusicList);
+        },
+        // albums sort by date
+        sortAlbumsList() {
+            // ordina gli album per data nell'array this.sortedList
+            this.sortedList = [...this.albumsList]
+
+            this.sortedList.sort(function (a, b) {
+
+                a.year = parseInt(a.year)
+                b.year = parseInt(b.year)
+
+                return b.year - a.year;
+            });
+        },
+
+        /*
         albumsFilteredMeth(event) {
             // console.log(event)
             let currentEl = event.currentTarget
-            console.log(currentEl.value)
 
-            if (!currentEl.value || currentEl.value === "all") {
+            if (!currentEl.value) {
 
-                console.log(this.sortedList)
-                return this.sortedList
+                this.filteredList = this.sortedList
+                return 
             }
 
-            console.log(currentEl.value)
+            const filteredList = this.sortedList.filter((album) => album.genre.toLowerCase() === currentEl.value.toLowerCase())
 
-            return this.sortedList.filter((album) => album.genre.toLowerCase() === currentEl.value.toLowerCase())
+            this.filteredList = [...filteredList]
+
         }
-
+        */
     },
 
     mounted() {
@@ -54,29 +79,9 @@ new Vue({
 
             if (ajaxList.length === ajaxArrayLength) {
                 this.albumsList = ajaxList;
-
-                // ordina gli album per data nell'array this.sortedList
-                this.sortedList = [...this.albumsList]
-
-                this.sortedList.sort(function (a, b) {
-
-                    a.year = parseInt(a.year)
-                    b.year = parseInt(b.year)
-
-                    return b.year - a.year;
-                });
-
-                // salvo i generi nella variabile genreList
-                let genreMusicList = [];
-
-                this.sortedList.forEach((album) => {
-
-                    if (genreMusicList.length == 0 || !genreMusicList.includes(album.genre)) {
-                        genreMusicList.push(album.genre)
-                    }
-                })
-                this.genreList = genreMusicList;
-               // console.log(genreMusicList);
+  
+                this.sortAlbumsList()
+                this.createGenreList()
             };
         });
 
