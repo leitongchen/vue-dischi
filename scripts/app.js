@@ -5,10 +5,43 @@ new Vue({
         sortedList: [],
 
         genreList: [],
+
+        userInput: "",
+    },
+    computed: {
+        albumsFiltered() {
+            // console.log(event)
+
+            if (!this.userInput || this.userInput === "all") {
+
+                // console.log(this.sortedList)
+                return this.sortedList
+            }
+
+            // console.log(this.userInput)
+
+            return this.sortedList.filter((album) => album.genre.toLowerCase() === this.userInput.toLowerCase())
+        }
     },
     methods: {
-        
+        albumsFilteredMeth(event) {
+            // console.log(event)
+            let currentEl = event.currentTarget
+            console.log(currentEl.value)
+
+            if (!currentEl.value || currentEl.value === "all") {
+
+                console.log(this.sortedList)
+                return this.sortedList
+            }
+
+            console.log(currentEl.value)
+
+            return this.sortedList.filter((album) => album.genre.toLowerCase() === currentEl.value.toLowerCase())
+        }
+
     },
+
     mounted() {
 
         let ajaxList = [];
@@ -43,7 +76,7 @@ new Vue({
                     }
                 })
                 this.genreList = genreMusicList;
-                console.log(genreMusicList);
+               // console.log(genreMusicList);
             };
         });
 
